@@ -1,7 +1,50 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-class Register extends StatelessWidget {
-  const Register({super.key});
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+class Register extends StatefulWidget {
+  const Register({Key? key}) : super(key: key);
+
+  @override
+  State<Register> createState() => _RegisterState();
+}
+
+class _RegisterState extends State<Register> {
+  /* 
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController nimController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  Future<void> signup() async {
+    var url = Uri.parse("http://192.168.1.3:3306/flutter/register.php");
+    var response = await http.post(url, body: {
+      "username": usernameController.text,
+      "nim": nimController.text,
+      "password": passwordController.text,
+      "email": emailController.text,
+    });
+
+    var result = jsonDecode(response.body);
+
+    if (result == 'success') {
+      print('success');
+    }
+    if (result == 'nim_exist') {
+      print('username already exists');
+    }
+    if (result == 'data_not_complete') {
+      print('data not complete');
+    }
+  }
+ */
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   fetchRegister();
+  // }
 
   @override
   Widget build(BuildContext context) {

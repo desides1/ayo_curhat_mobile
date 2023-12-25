@@ -1,9 +1,48 @@
+import 'dart:convert';
+
+import 'package:ayo_curhat/view/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:ayo_curhat/view/listView.dart';
 import 'package:ayo_curhat/view/register_page_widget.dart';
+// import 'package:async/async.dart';
+import 'package:http/http.dart' as http;
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool _isObsecure = true;
+  TextEditingController nimController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  Future<void> login() async {
+    var url = Uri.parse("http://192.168.1.3/flutter/login.php");
+    var response = await http.post(url,
+        body: {"nim": nimController.text, "password": passwordController.text});
+
+    var dataUser = jsonDecode(response.body);
+    if (dataUser != '') {
+      print('login sukses');
+      Navigator.push<void>(
+        context,
+        MaterialPageRoute<void>(
+          builder: (BuildContext context) => const List_View(),
+        ),
+      );
+    } else {
+      print('login gagal');
+      Navigator.push<void>(
+        context,
+        MaterialPageRoute<void>(
+          builder: (BuildContext context) => const Welcome(),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -165,12 +204,11 @@ class MyApp extends StatelessWidget {
                         padding: const EdgeInsets.all(10.0),
                         child: ElevatedButton(
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const List_View(),
-                                ),
-                              );
+                              try {
+                                login();
+                              } catch (e) {
+                                print('error: $e');
+                              }
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
