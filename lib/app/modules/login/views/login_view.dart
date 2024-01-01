@@ -1,15 +1,17 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
-import 'package:ayo_curhat/view/listView.dart';
-import 'package:ayo_curhat/view/register_page_widget.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+import 'package:get/get.dart';
 
+import '../controllers/login_controller.dart';
+
+class LoginView extends GetView<LoginController> {
+  const LoginView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // Scaffold untuk menghendel 1 layar
       home: Scaffold(
         body: Column(
           children: [
@@ -45,6 +47,7 @@ class MyApp extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: TextField(
+                        controller: controller.nimController,
                         decoration: InputDecoration(
                             contentPadding: const EdgeInsets.only(
                                 top: 5, bottom: 5, left: 30, right: 5),
@@ -66,27 +69,33 @@ class MyApp extends StatelessWidget {
                     // Bagian Password
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.only(
-                                top: 5, bottom: 5, left: 30, right: 5),
-                            suffixIcon: Icon(
-                              Icons.remove_red_eye,
-                              color: (Colors.grey[300])!,
-                            ),
-                            hintText: "Masukkan Password",
-                            hintStyle: TextStyle(color: (Colors.grey[300])!),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(45.0),
-                              borderSide: BorderSide(
-                                width: 1,
-                                color: (Colors.grey[300])!,
+                      child: Obx(
+                        () => TextField(
+                          controller: controller.passwordController,
+                          autocorrect: false,
+                          obscureText: controller.hidden.value,
+                          decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.only(
+                                  top: 5, bottom: 5, left: 30, right: 5),
+                              suffixIcon: IconButton(
+                                onPressed: () => controller.hidden.toggle(),
+                                icon: controller.hidden.isTrue
+                                    ? Icon(Icons.remove_red_eye)
+                                    : Icon(Icons.remove_red_eye_outlined),
                               ),
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(45.0),
-                            )),
+                              hintText: "Masukkan Password",
+                              hintStyle: TextStyle(color: (Colors.grey[300])!),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(45.0),
+                                borderSide: BorderSide(
+                                  width: 1,
+                                  color: (Colors.grey[300])!,
+                                ),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(45.0),
+                              )),
+                        ),
                       ),
                     ),
 
@@ -106,7 +115,7 @@ class MyApp extends StatelessWidget {
                               child: TextButton(
                                 style: TextButton.styleFrom(
                                     foregroundColor: (Colors.grey[600])!,
-                                    minimumSize: Size.zero,
+                                    // minimumSize: Sizes.zero,
                                     padding: EdgeInsets.zero,
                                     tapTargetSize:
                                         MaterialTapTargetSize.shrinkWrap),
@@ -132,12 +141,12 @@ class MyApp extends StatelessWidget {
                         padding: const EdgeInsets.all(10.0),
                         child: ElevatedButton(
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const Register(),
-                                ),
-                              );
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) => (){},
+                              //   ),
+                              // );
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
@@ -164,14 +173,7 @@ class MyApp extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const List_View(),
-                                ),
-                              );
-                            },
+                            onPressed: () => controller.authLogin(),
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
                                   Color.fromARGB(255, 222, 61, 144),
@@ -200,51 +202,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-/* class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
-} */

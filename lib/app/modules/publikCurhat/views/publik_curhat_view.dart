@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ayo_curhat/main.dart';
+
+import 'package:get/get.dart';
+
+import '../controllers/publik_curhat_controller.dart';
 
 class ListTileContent {
   String? title;
@@ -8,8 +11,8 @@ class ListTileContent {
   ListTileContent({this.no, this.title, this.subtile});
 }
 
-class List_View extends StatelessWidget {
-  const List_View({super.key});
+class PublikCurhatView extends GetView<PublikCurhatController> {
+  const PublikCurhatView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,6 @@ class List_View extends StatelessWidget {
           no: "7", title: "Judul 7", subtile: "Mencoba dengan nilai baru"),
       ListTileContent(no: "8", title: "Judul 8", subtile: "Berhasil"),
     ];
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(

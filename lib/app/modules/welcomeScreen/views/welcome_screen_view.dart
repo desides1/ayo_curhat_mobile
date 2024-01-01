@@ -1,10 +1,16 @@
+import 'package:ayo_curhat/app/modules/login/controllers/login_controller.dart';
+import 'package:ayo_curhat/app/modules/login/views/login_view.dart';
 import 'package:flutter/material.dart';
-import 'login_page_widget.dart';
 
-class Welcome extends StatelessWidget {
-  const Welcome({super.key});
+import 'package:get/get.dart';
+
+import '../controllers/welcome_screen_controller.dart';
+
+class WelcomeScreenView extends GetView<WelcomeScreenController> {
+  const WelcomeScreenView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    Get.put(LoginController());
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -74,12 +80,7 @@ class Welcome extends StatelessWidget {
                     padding: const EdgeInsets.all(30),
                     child: FloatingActionButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MyApp(),
-                          ),
-                        );
+                        Get.to(() => LoginView());
                       },
                       backgroundColor: Colors.pink,
                       child: Icon(

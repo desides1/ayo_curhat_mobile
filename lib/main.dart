@@ -1,26 +1,20 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_praktikum/halamanPertama.dart';
-// import 'package:flutter_praktikum/halamanUtama.dart';
-import 'package:ayo_curhat/view/listView.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-import 'package:ayo_curhat/view/register_page_widget.dart';
-import 'package:ayo_curhat/view/splash_page_widget.dart';
-// import 'login_page_widget.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
-  // menjalankan aplikasi
-  runApp(Home());
-}
+import 'app/routes/app_pages.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          body: SplashScreen(),
-        ));
-  }
+void main() async {
+  await GetStorage.init();
+  runApp(
+    GetMaterialApp(
+      title: "Ayo Curhat",
+      initialRoute: AppPages.INITIAL,
+      getPages: AppPages.routes,
+      builder: EasyLoading.init(),
+      debugShowCheckedModeBanner: false,
+    ),
+  );
 }

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Register extends StatelessWidget {
-  const Register({super.key});
+import 'package:get/get.dart';
 
+import '../controllers/register_controller.dart';
+
+class RegisterView extends GetView<RegisterController> {
+  const RegisterView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
