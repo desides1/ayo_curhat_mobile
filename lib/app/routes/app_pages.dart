@@ -9,7 +9,7 @@ import '../modules/views/register_view.dart';
 import '../modules/bindings/splash_screen_binding.dart';
 import '../modules/views/splash_screen_view.dart';
 import '../modules/splashScreen/bindings/welcome_screen_binding.dart';
-import '../modules/views/welcome_screen_view.dart';
+import '../modules/welcomeScreen/views/welcome_screen_view.dart';
 
 part 'app_routes.dart';
 
