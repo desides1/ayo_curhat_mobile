@@ -1,10 +1,10 @@
-import 'package:ayo_curhat/app/modules/login/controllers/login_controller.dart';
-import 'package:ayo_curhat/app/modules/login/views/login_view.dart';
+import 'package:ayo_curhat/app/modules/controllers/login_controller.dart';
+import 'package:ayo_curhat/app/modules/views/login_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/welcome_screen_controller.dart';
+import '../splashScreen/controllers/welcome_screen_controller.dart';
 
 class WelcomeScreenView extends GetView<WelcomeScreenController> {
   const WelcomeScreenView({Key? key}) : super(key: key);

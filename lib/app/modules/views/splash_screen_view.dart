@@ -1,4 +1,4 @@
-import 'package:ayo_curhat/app/modules/welcomeScreen/views/welcome_screen_view.dart';
+import 'package:ayo_curhat/app/modules/views/welcome_screen_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
