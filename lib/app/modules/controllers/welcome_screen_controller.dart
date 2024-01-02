@@ -1,5 +1,5 @@
-import 'package:ayo_curhat/app/modules/login/controllers/login_controller.dart';
-import 'package:ayo_curhat/app/modules/login/views/login_view.dart';
+import 'package:ayo_curhat/app/modules/controllers/login_controller.dart';
+import 'package:ayo_curhat/app/modules/views/login_view.dart';
 import 'package:get/get.dart';
 
 class WelcomeScreenController extends GetxController {
@@ -11,7 +11,7 @@ class WelcomeScreenController extends GetxController {
     // Your initialization logic, if needed
   }
 
-  // void navigateToLoginPage() {
-  //   Get.to(() => LoginView());
-  // }
+  void navigateToLoginPage() {
+    Get.to(() => LoginView());
+  }
 }

@@ -1,3 +1,5 @@
+import 'package:ayo_curhat/app/modules/controllers/auth_login_controller.dart';
+import 'package:ayo_curhat/app/modules/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -12,7 +14,10 @@ class ListTileContent {
 }
 
 class PublikCurhatView extends GetView<PublikCurhatController> {
-  const PublikCurhatView({Key? key}) : super(key: key);
+  PublikCurhatView({Key? key}) : super(key: key);
+
+  final login = Get.find<LoginController>();
+  final auth = Get.find<AuthLoginController>();
 
   @override
   Widget build(BuildContext context) {
@@ -35,25 +40,29 @@ class PublikCurhatView extends GetView<PublikCurhatController> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+          floatingActionButton: FloatingActionButton(
+            onPressed: () => auth.logout(auth.rememberMe.value),
+            child: Icon(Icons.logout),
+          ),
           body: ListView.builder(
-        itemCount: judul.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(
-              judul[index].title,
-            ),
-            subtitle: Text(
-              judul[index].subtile,
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-            ),
-            leading: CircleAvatar(
-              child: Text(judul[index].no),
-            ),
-            trailing: const Icon(Icons.more_horiz_outlined),
-          );
-        },
-      )),
+            itemCount: judul.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(
+                  judul[index].title,
+                ),
+                subtitle: Text(
+                  judul[index].subtile,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                leading: CircleAvatar(
+                  child: Text(judul[index].no),
+                ),
+                trailing: const Icon(Icons.more_horiz_outlined),
+              );
+            },
+          )),
     );
   }
 }

@@ -3,13 +3,18 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import '../controllers/auth_login_controller.dart';
+// import '../controllers/login_controller.dart';
 
-import '../controllers/login_controller.dart';
-
-class LoginView extends GetView<LoginController> {
+class LoginView extends GetView<AuthLoginController> {
   const LoginView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    // Get.put(AuthLoginController());
+    // Get.put(LoginController());
+    // Get.find<AuthLoginController>();
+    // Get.find<LoginController>();
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -104,10 +109,16 @@ class LoginView extends GetView<LoginController> {
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
                       child: Row(
                         children: [
-                          const Text("Ingat saya"),
-                          Checkbox(
-                            value: false,
-                            onChanged: (value) {},
+                          // const Text("Ingat saya"),
+
+                          Obx(
+                            () => CheckboxListTile(
+                              value: controller.rememberMe.value,
+                              onChanged: (value) =>
+                                  controller.rememberMe.toggle(),
+                              title: Text('Ingat saya'),
+                              controlAffinity: ListTileControlAffinity.leading,
+                            ),
                           ),
                           Expanded(
                             child: Align(
@@ -173,7 +184,11 @@ class LoginView extends GetView<LoginController> {
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: ElevatedButton(
-                            onPressed: () => controller.authLogin(),
+                            onPressed: () => controller.login(
+                                  controller.nimController.text,
+                                  controller.passwordController.text,
+                                  controller.rememberMe.value,
+                                ),
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
                                   Color.fromARGB(255, 222, 61, 144),

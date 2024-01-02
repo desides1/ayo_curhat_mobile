@@ -1,5 +1,6 @@
-import 'package:ayo_curhat/app/modules/login/controllers/login_controller.dart';
-import 'package:ayo_curhat/app/modules/login/views/login_view.dart';
+import 'package:ayo_curhat/app/modules/controllers/auth_login_controller.dart';
+// import 'package:ayo_curhat/app/modules/controllers/login_controller.dart';
+import 'package:ayo_curhat/app/modules/views/login_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -10,7 +11,7 @@ class WelcomeScreenView extends GetView<WelcomeScreenController> {
   const WelcomeScreenView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Get.put(LoginController());
+    Get.put(AuthLoginController());
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
