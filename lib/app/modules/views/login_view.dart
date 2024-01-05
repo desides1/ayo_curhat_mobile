@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:ayo_curhat/app/modules/views/publik_curhat_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -108,16 +109,14 @@ class LoginView extends GetView<AuthLoginController> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
                       child: Row(
-                        children: [
-                          // const Text("Ingat saya"),
-
+                        children: <Widget>[
+                          const Text("Ingat saya"),
                           Obx(
-                            () => CheckboxListTile(
+                            () => Checkbox(
                               value: controller.rememberMe.value,
                               onChanged: (value) =>
                                   controller.rememberMe.toggle(),
-                              title: Text('Ingat saya'),
-                              controlAffinity: ListTileControlAffinity.leading,
+                              // controlAffinity: ListTileControlAffinity.leading,
                             ),
                           ),
                           Expanded(
@@ -184,11 +183,9 @@ class LoginView extends GetView<AuthLoginController> {
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: ElevatedButton(
-                            onPressed: () => controller.login(
-                                  controller.nimController.text,
-                                  controller.passwordController.text,
-                                  controller.rememberMe.value,
-                                ),
+                            onPressed: () {
+                              Get.to(() => PublikCurhatView());
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
                                   Color.fromARGB(255, 222, 61, 144),

@@ -1,3 +1,4 @@
+import 'package:ayo_curhat/app/modules/views/login_view.dart';
 import 'package:get/get.dart';
 import 'package:ayo_curhat/app/data/login_provider.dart';
 import 'package:get_storage/get_storage.dart';
@@ -95,5 +96,6 @@ class AuthLoginController extends GetxController {
       box.erase();
     }
     isAuth.value = false;
+    Get.put(LoginView());
   }
 }
