@@ -1,14 +1,18 @@
 import 'dart:ffi';
 
-import 'package:ayo_curhat/app/modules/views/publik_curhat_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import '../controllers/auth_login_controller.dart';
+import 'package:get_storage/get_storage.dart';
+
+import '../controllers/login_controller.dart';
+// import '../controllers/auth_login_controller.dart';
 // import '../controllers/login_controller.dart';
 
-class LoginView extends GetView<AuthLoginController> {
-  const LoginView({Key? key}) : super(key: key);
+class LoginView extends GetView<LoginController> {
+  final box = GetStorage();
+
+  LoginView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     // Get.put(AuthLoginController());
@@ -16,6 +20,11 @@ class LoginView extends GetView<AuthLoginController> {
     // Get.find<AuthLoginController>();
     // Get.find<LoginController>();
 
+    if (box.read("DataRememberMe") != null) {
+      controller.rememberMe.value = true;
+      controller.nimController = box.read("DataRememberMe")['nim'];
+      controller.passwordController = box.read("DataRememberMe")['password'];
+    }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -183,9 +192,7 @@ class LoginView extends GetView<AuthLoginController> {
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: ElevatedButton(
-                            onPressed: () {
-                              Get.to(() => PublikCurhatView());
-                            },
+                            onPressed: () => controller.authLogin(),
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
                                   Color.fromARGB(255, 222, 61, 144),

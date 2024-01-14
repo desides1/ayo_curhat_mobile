@@ -38,37 +38,35 @@ class AuthLoginController extends GetxController {
 
         if (response.statusCode == 200) {
           final Map<String, dynamic> responseData = json.decode(response.body);
-          if (responseData['success'] == true) {
-            EasyLoading.show();
-            if (rememberMe) {
-              final box = GetStorage();
-              box.write(
-                'dataUser',
-                {
-                  "nim": nimController.text,
-                  "password": passwordController,
-                  "rememberMe": rememberMe,
-                  "token": responseData['token'],
-                },
-              );
-            } else {
-              final box = GetStorage();
-              if (box.read('dataUser') != null) {
-                box.erase();
-              }
-            }
-            isAuth.value = true;
-            Get.snackbar(
-              "Success",
-              "Login Berhasil",
-              backgroundColor: Colors.green,
-              colorText: Colors.white,
+          EasyLoading.show();
+          if (rememberMe) {
+            final box = GetStorage();
+            box.write(
+              'dataUser',
+              {
+                "nim": nimController.text,
+                "password": passwordController,
+                "rememberMe": rememberMe,
+                "token": responseData['token'],
+              },
             );
-            Get.offAllNamed(Routes.PUBLIK_CURHAT);
+            print(responseData);
           } else {
-            // pesan error tidak valid akun
+            final box = GetStorage();
+            if (box.read('dataUser') != null) {
+              box.erase();
+            }
           }
+          isAuth.value = true;
+          Get.snackbar(
+            "Success",
+            "Login Berhasil",
+            backgroundColor: Colors.green,
+            colorText: Colors.white,
+          );
+          // Get.toNamed('/publik-curhat');
           EasyLoading.dismiss();
+          Get.offAllNamed('/publik-curhat');
         }
       } catch (e) {
         Get.snackbar(

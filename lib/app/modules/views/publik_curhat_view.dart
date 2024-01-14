@@ -17,7 +17,6 @@ class PublikCurhatView extends GetView<PublikCurhatController> {
   PublikCurhatView({Key? key}) : super(key: key);
 
   final login = Get.find<LoginController>();
-  final auth = Get.find<AuthLoginController>();
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +40,7 @@ class PublikCurhatView extends GetView<PublikCurhatController> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
           floatingActionButton: FloatingActionButton(
-            onPressed: () => auth.logout(auth.rememberMe.value),
+            onPressed: () => login.logout(),
             child: Icon(Icons.logout),
           ),
           body: ListView.builder(
