@@ -2,31 +2,42 @@ name: ayo_curhat
 version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
-environment: 
+environment:
   sdk: '>=3.1.0 <4.0.0'
 
-dependencies: 
+dependencies:
   cupertino_icons: ^1.0.2
   http: ^1.1.0
   shared_preferences: ^2.2.2
   get_cli: ^1.8.1
   get: 4.6.6
-  flutter: 
+  flutter:
     sdk: flutter
   loading_animation_widget: ^1.2.0+4
   flutter_easyloading: ^3.0.5
   video_player: ^2.8.1
   get_storage: ^2.1.1
+  google_fonts: ^6.1.0
+  flutter_svg: ^2.0.9
 
-dev_dependencies: 
+dev_dependencies:
   flutter_lints: ^2.0.0
-  flutter_test: 
+  flutter_test:
     sdk: flutter
 
-flutter: 
-  assets: 
+flutter:
+  assets:
     - assets/images/logo.png
     - assets/images/white-logo.png
     - assets/images/Beranda.png
+    - assets/images/chat.svg
+    - assets/images/comment.svg
+    - assets/images/downvote.svg
+    - assets/images/icon_profile.svg
+    - assets/images/lapor.svg
+    - assets/images/more_menu.svg
+    - assets/images/photo_profile.svg
+    - assets/images/share.svg
+    - assets/images/upvote.svg
+    - assets/images/profile.png
   uses-material-design: true
-

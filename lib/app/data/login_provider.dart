@@ -8,6 +8,6 @@ class LoginProvider extends GetConnect {
     var header = {
       'Accept': 'applications/json',
     };
-    return post('http://10.0.2.2:8000/api/login', data, headers: header);
+    return post('http://10.0.2.2:8000/api/auth/login', data, headers: header);
   }
 }

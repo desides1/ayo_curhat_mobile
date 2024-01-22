@@ -65,7 +65,7 @@ class LoginController extends GetxController {
             backgroundColor: Colors.green,
             colorText: Colors.white,
           );
-          Get.offAllNamed(Routes.PUBLIK_CURHAT);
+          Get.offAllNamed(Routes.BOTTOMNAV);
         } else {
           Get.snackbar(
             "Error",

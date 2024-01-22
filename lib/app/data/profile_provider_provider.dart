@@ -1,0 +1,11 @@
+import 'package:get/get.dart';
+
+class ProfileProviderProvider extends GetConnect {
+  Future<Response> getDataProfile(Map<String, dynamic> data) {
+    var header = {
+      'Authorization':
+          'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiNjEwOTI3MzNkMTFjM2Y0MGM1YjNhNWE2ZjUyZWI2ZWFmNTJiNDIxMjk0MmNlOGI1NGJhNTFiYTgyZTgyM2U2Mjc1MzIzMDA0YTVhMDFjYWYiLCJpYXQiOjE3MDU2NTM0MDkuMDk3MzE1LCJuYmYiOjE3MDU2NTM0MDkuMDk3MzE5LCJleHAiOjE3MzcyNzU4MDkuMDg0NTgxLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.FkHjGhmfNumkk3Ov_y4ZDxpcAHVTWFA8HENv7aIK0VRtt-8LjTwsMcYcagxlPNtBjwMD4eDfhw65qEwuBWunf-tO_2oF4w6Hl5IqVW-qnPZx30H1XIxW9RS9TmKchLBdj5PK3OsFHqTwlHr95CyMZCyJLkJtAEPKrPzv8K9grKvbaFA6g7pD2QLMI-ey0HgeUGfrOjopLJPPSK2MZDTDf5G5etWk1pzk2SuvOOhBkhxEsFD6NniCw8ddjUn1vlGMhECM0A9Z28V_9MRcxA-E7Ohu7Mfb4e9cPAC1DCCVX34DcPDc2uhGs6c8fsrAQx_luDrkSk3h67SeeHi67h0DxTWj0JJQ7hNp_XsdijuDHr0DB-t9eDfYnFQRmluH4vU5EQ1OoDyX81mAOoQln_fs4j34ar1ZMW8IQulGWZRWVulg4ddR0bnKG_ktEUItX9jXnv8MTo3LFtB8n73Z4pKKQ3b9TK-WDXIA09hLX0uOujmnjElcJUKUDtw2YVEt5rxxJb-kwPooiqTANq9ICtvXak51WRE3Y8NeE0tYfGTFzD0ITK84TgVm91kbVNJHN7tUmm37kTX1BXLGsx8ZKCe3Me9v2zEkkWhX-PzlW-BRNUVVm1cEtSD6dnIYfNrE9FZ5PuGnrtyYGHMrE5qdk5L1hoX4cu1ChPSgF8KSTu9T0ak', // Ganti dengan access token yang sesuai
+    };
+    return get('http://10.0.2.2:8000/api/profile', headers: header);
+  }
+}

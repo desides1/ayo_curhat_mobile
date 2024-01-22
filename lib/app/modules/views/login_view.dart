@@ -163,7 +163,7 @@ class LoginView extends GetView<LoginController> {
                               // Navigator.push(
                               //   context,
                               //   MaterialPageRoute(
-                              //     builder: (context) => (){},
+                              //     builder: (context) => () {},
                               //   ),
                               // );
                             },
